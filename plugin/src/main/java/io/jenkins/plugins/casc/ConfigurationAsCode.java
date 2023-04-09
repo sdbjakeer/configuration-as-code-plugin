@@ -729,9 +729,9 @@ public class ConfigurationAsCode extends ManagementLink {
                     unknownKeys.add(key);
                 }
             });
-
             if (!unknownKeys.isEmpty()) {
-                throw new ConfiguratorException(format("No configurator for the following root elements %s", String.join(", ", unknownKeys)));
+                LOGGER.log(Level.SEVERE, "No configurator for the following root elements: " + String.join(", ", unknownKeys));
+                throw new ConfiguratorException("Invalid Configuration. Please check your configuration and try again.");
             }
         }
     }
